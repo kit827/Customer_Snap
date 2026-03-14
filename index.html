@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Snapshot – Sri Lanka</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="header_left">
+        <img src="Layer 7@3x.png" alt="Description of the image">
+        <h2 class="logo"><a href="#">Customer Snapshot</a></h2>
+      </div>
+      <ul class="all-links">
+        <li><a href="#snapshot-section gt-section">General T.</a></li>
+        <li><a href="#snapshot-section mt-section">Modern T.</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page">
+    <div class="snapshot-layout">
+
+      <!-- ══ LEFT · GENERAL TRADE ══ -->
+      <section class="snapshot-section gt-section">
+        <div class="section-box">
+          <h2 class="section-title">General Trade</h2>
+
+          <div class="stat-strip">
+            <div class="stat-pill">
+              <div class="stat-pill-label">Market Share</div>
+              <div class="stat-pill-value">85%</div>
+              <div class="stat-pill-sub">of LMB</div>
+            </div>
+            <div class="stat-pill cyan">
+              <div class="stat-pill-label">Revenue</div>
+              <div class="stat-pill-value">160</div>
+              <div class="stat-pill-sub">Mio CHF</div>
+            </div>
+          </div>
+
+          <div class="map-container">
+            <div class="map-svg-wrapper" id="map-wrapper">
+
+              <!--
+                viewBox expanded left (–80) and right (+165) to hold
+                inline region-name labels with connector lines.
+                Total width: 80 + 595.28 + 165 ≈ 840  →  viewBox="-80 0 760 841.89"
+              -->
+              <svg id="map-svg"
+                   xmlns="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"
+                   viewBox="-80 0 760 841.89"
+                   role="img"
+                   aria-label="Sri Lanka regional map">
+
+                <!-- ─── REGION PNG LAYERS ───────────────────── -->
+                <g id="South" class="region" data-id="south" tabindex="0" role="button" aria-label="South region">
+                  <image width="4701" height="2211"
+                         transform="translate(166.03 533.12) scale(0.07)"
+                         xlink:href="Layer%206%20copy%206@3x.png"/>
+                </g>
+                <g id="Colombo_S" class="region" data-id="colomboS" tabindex="0" role="button" aria-label="Colombo S region">
+                  <image width="1950" height="1923"
+                         transform="translate(137.95 476.95) scale(0.07)"
+                         xlink:href="Layer%206%20copy@3x.png"/>
+                </g>
+                <g id="Colombo_N" class="region" data-id="colomboN" tabindex="0" role="button" aria-label="Colombo N region">
+                  <image width="882" height="693"
+                         transform="translate(133.27 490.62) scale(0.07)"
+                         xlink:href="Layer%206%20copy%207@3x.png"/>
+                </g>
+                <g id="Eastern" class="region" data-id="eastern" tabindex="0" role="button" aria-label="Eastern region">
+                  <image width="3687" height="3126"
+                         transform="translate(242.31 384.94) scale(0.07)"
+                         xlink:href="Layer%206%20copy%205@3x.png"/>
+                </g>
+                <g id="Central" class="region" data-id="central" tabindex="0" role="button" aria-label="Central region">
+                  <image width="1979" height="2325"
+                         transform="translate(199.97 391.74) scale(0.07)"
+                         xlink:href="Layer%207@3x.png"/>
+                </g>
+                <g id="Wayamba" class="region" data-id="wayamba" tabindex="0" role="button" aria-label="Wayamba region">
+                  <image width="1997" height="2043"
+                         transform="translate(124.82 373.02) scale(0.07)"
+                         xlink:href="Layer%206%20copy%204@3x.png"/>
+                </g>
+                <g id="Rajarata" class="region" data-id="rajarata" tabindex="0" role="button" aria-label="Rajarata region">
+                  <image width="5433" height="3078"
+                         transform="translate(106.24 209.64) scale(0.07)"
+                         xlink:href="Layer%206%20copy%203@3x.png"/>
+                </g>
+                <g id="North" class="region" data-id="north" tabindex="0" role="button" aria-label="North region">
+                  <image width="3699" height="3270"
+                         transform="translate(117.01 35.69) scale(0.07)"
+                         xlink:href="Layer%206%20copy%202@3x.png"/>
+                </g>
+
+                <!-- ─── REGION LABELS WITH CONNECTOR LINES ─── -->
+                <!--
+                  Dot at region centre → diagonal line → short horiz tick → name text
+                  Right-side labels: North, Rajarata, Eastern, South
+                  Left-side  labels: Wayamba, Central, Colombo N, Colombo S
+                -->
+                <g class="region-labels"
+                   font-family="Syne, sans-serif"
+                   font-weight="700"
+                   font-size="16px"
+                   pointer-events="none">
+
+                  <!-- North (right) — anchor ~(246, 150) -->
+                  <circle cx="246" cy="150" r="3.8" fill="#7B73B5"/>
+                  <line x1="246" y1="150" x2="505" y2="100" stroke="#7B73B5" stroke-width="0.85" opacity="0.7"/>
+                  <line x1="505" y1="100" x2="520" y2="100" stroke="#7B73B5" stroke-width="0.85" opacity="0.7"/>
+                  <text x="524" y="105" fill="#e8e6f8" opacity="0.95">North</text>
+
+                  <!-- Rajarata (right) — anchor ~(296, 317) -->
+                  <circle cx="296" cy="317" r="3.8" fill="#E8853A"/>
+                  <line x1="296" y1="317" x2="505" y2="275" stroke="#E8853A" stroke-width="0.85" opacity="0.7"/>
+                  <line x1="505" y1="275" x2="520" y2="275" stroke="#E8853A" stroke-width="0.85" opacity="0.7"/>
+                  <text x="524" y="280" fill="#e8e6f8" opacity="0.95">Rajarata</text>
+
+                  <!-- Eastern (right) — anchor ~(371, 494) -->
+                  <circle cx="371" cy="494" r="3.8" fill="#5BBDB8"/>
+                  <line x1="371" y1="494" x2="505" y2="508" stroke="#5BBDB8" stroke-width="0.85" opacity="0.7"/>
+                  <line x1="505" y1="508" x2="520" y2="508" stroke="#5BBDB8" stroke-width="0.85" opacity="0.7"/>
+                  <text x="524" y="513" fill="#e8e6f8" opacity="0.95">Eastern</text>
+
+                  <!-- South (right) — anchor ~(330, 611) -->
+                  <circle cx="330" cy="611" r="3.8" fill="#2E8B8B"/>
+                  <line x1="330" y1="611" x2="505" y2="622" stroke="#2E8B8B" stroke-width="0.85" opacity="0.7"/>
+                  <line x1="505" y1="622" x2="520" y2="622" stroke="#2E8B8B" stroke-width="0.85" opacity="0.7"/>
+                  <text x="524" y="627" fill="#e8e6f8" opacity="0.95">South</text>
+
+                  <!-- Wayamba (left) — anchor ~(195, 444) -->
+                  <circle cx="195" cy="444" r="3.8" fill="#C4D84E"/>
+                  <line x1="195" y1="444" x2="48" y2="390" stroke="#C4D84E" stroke-width="0.85" opacity="0.7"/>
+                  <line x1="48" y1="390" x2="33" y2="390" stroke="#C4D84E" stroke-width="0.85" opacity="0.7"/>
+                  <text x="29" y="395" fill="#e8e6f8" opacity="0.95" text-anchor="end">Wayamba</text>
+
+                  <!-- Central (left) — anchor ~(269, 473) -->
+                  <circle cx="269" cy="473" r="3.8" fill="#2B6BAD"/>
+                  <line x1="269" y1="473" x2="48" y2="452" stroke="#2B6BAD" stroke-width="0.85" opacity="0.7"/>
+                  <line x1="48" y1="452" x2="33" y2="452" stroke="#2B6BAD" stroke-width="0.85" opacity="0.7"/>
+                  <text x="29" y="457" fill="#e8e6f8" opacity="0.95" text-anchor="end">Central</text>
+
+                  <!-- Colombo N (left) — anchor ~(164, 515) -->
+                  <circle cx="164" cy="515" r="3.8" fill="#aaaaaa"/>
+                  <line x1="164" y1="515" x2="48" y2="510" stroke="#aaaaaa" stroke-width="0.85" opacity="0.7"/>
+                  <line x1="48" y1="510" x2="33" y2="510" stroke="#aaaaaa" stroke-width="0.85" opacity="0.7"/>
+                  <text x="29" y="515" fill="#e8e6f8" opacity="0.95" text-anchor="end">Colombo N</text>
+
+                  <!-- Colombo S (left) — anchor ~(206, 544) -->
+                  <circle cx="206" cy="544" r="3.8" fill="#E06868"/>
+                  <line x1="206" y1="544" x2="48" y2="556" stroke="#E06868" stroke-width="0.85" opacity="0.7"/>
+                  <line x1="48" y1="556" x2="33" y2="556" stroke="#E06868" stroke-width="0.85" opacity="0.7"/>
+                  <text x="29" y="561" fill="#e8e6f8" opacity="0.95" text-anchor="end">Colombo S</text>
+
+                </g><!-- /.region-labels -->
+
+              </svg>
+            </div><!-- /#map-wrapper -->
+
+            <!-- Floating tooltip -->
+            <div id="tooltip" role="tooltip" aria-live="polite">
+              <button class="tt-close" id="tt-close" aria-label="Close">✕</button>
+              <div class="tt-name" id="tt-name">Region</div>
+              <div class="tt-row">
+                <span class="tt-key">GT Share</span>
+                <span class="tt-val" id="tt-gt">–</span>
+              </div>
+              <div class="tt-row">
+                <span class="tt-key">LMB Share</span>
+                <span class="tt-val" id="tt-lmb">–</span>
+              </div>
+              <div class="tt-divider"></div>
+              <div class="tt-chf" id="tt-chf">–</div>
+              <div class="tt-chf-label">Mio CHF</div>
+            </div>
+          </div><!-- /.map-container -->
+
+          <!-- compact legend row kept for colour reference -->
+          
+
+        </div><!-- /.section-box -->
+      </section>
+
+      <!-- ══ RIGHT · MODERN TRADE ══ -->
+      <section class="snapshot-section mt-section">
+        <div class="section-box">
+          <h2 class="section-title">Modern Trade</h2>
+
+          <div class="stat-strip">
+            <div class="stat-pill">
+              <div class="stat-pill-label">Market Share</div>
+              <div class="stat-pill-value">15%</div>
+              <div class="stat-pill-sub">of LMB</div>
+            </div>
+            <div class="stat-pill cyan">
+              <div class="stat-pill-label">Revenue</div>
+              <div class="stat-pill-value">30</div>
+              <div class="stat-pill-sub">Mio CHF</div>
+            </div>
+          </div>
+
+          <div class="mt-content">
+            <div class="retailers-grid">
+
+              <!-- Cargills -->
+              <div class="retailer-card" data-retailer="cargills" tabindex="0" role="button" aria-label="Cargills">
+                <div class="card-inner">
+                  <div class="card-front front-cargills">
+                    <span class="brand-since">Since 1844</span>
+                    <span class="brand-name">Cargills</span>
+                  </div>
+                  <div class="card-back back-cargills">
+                    <div class="ic-wrap">
+                      <div class="ic-stars">★★★★★</div>
+                      <div class="ic-name">Cargills</div>
+                      <div class="ic-outlets">500+ Outlets</div>
+                      <div class="ic-pct">50% (OT) / 8% (LMB)</div>
+                      <div class="ic-chf">15 Mio CHF</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Keells -->
+              <div class="retailer-card" data-retailer="keells" tabindex="0" role="button" aria-label="Keells">
+                <div class="card-inner">
+                  <div class="card-front front-keells">
+                    <span class="brand-name">Keells</span>
+                  </div>
+                  <div class="card-back back-keells">
+                    <div class="ic-wrap">
+                      <div class="ic-stars">★★★★☆</div>
+                      <div class="ic-name">Keells</div>
+                      <div class="ic-outlets">123+ Outlets</div>
+                      <div class="ic-pct">28% (OT) / 4% (LMB)</div>
+                      <div class="ic-chf">8 Mio CHF</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sathosa -->
+              <div class="retailer-card" data-retailer="sathosa" tabindex="0" role="button" aria-label="Sathosa">
+                <div class="card-inner">
+                  <div class="card-front front-sathosa">
+                    <span class="brand-name">Sathosa</span>
+                    <span class="brand-sub">Lanka Sathosa</span>
+                  </div>
+                  <div class="card-back back-sathosa">
+                    <div class="ic-wrap">
+                      <div class="ic-stars">★★★★☆</div>
+                      <div class="ic-name">Sathosa</div>
+                      <div class="ic-outlets">430+ Outlets</div>
+                      <div class="ic-pct">11% (OT) / 3% (LMB)</div>
+                      <div class="ic-chf">3 Mio CHF</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Arpico -->
+              <div class="retailer-card" data-retailer="arpico" tabindex="0" role="button" aria-label="Arpico">
+                <div class="card-inner">
+                  <div class="card-front front-arpico">
+                    <span class="brand-name">ARPICO</span>
+                    <span class="brand-sub">Supercentre</span>
+                  </div>
+                  <div class="card-back back-arpico">
+                    <div class="ic-wrap">
+                      <div class="ic-stars">★★★☆☆</div>
+                      <div class="ic-name">Arpico</div>
+                      <div class="ic-outlets">60+ Outlets</div>
+                      <div class="ic-pct">6% (OT) / 2% (LMB)</div>
+                      <div class="ic-chf">2 Mio CHF</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SPAR -->
+              <div class="retailer-card" data-retailer="spar" tabindex="0" role="button" aria-label="SPAR">
+                <div class="card-inner">
+                  <div class="card-front front-spar">
+                    <span class="brand-name">SPAR</span>
+                  </div>
+                  <div class="card-back back-spar">
+                    <div class="ic-wrap">
+                      <div class="ic-stars">★★★☆☆</div>
+                      <div class="ic-name">SPAR</div>
+                      <div class="ic-outlets">10+ Outlets</div>
+                      <div class="ic-pct">3% (OT) / 1% (LMB)</div>
+                      <div class="ic-chf">1 Mio CHF</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LAUGFS -->
+              <div class="retailer-card" data-retailer="laugfs" tabindex="0" role="button" aria-label="LAUGFS">
+                <div class="card-inner">
+                  <div class="card-front front-laugfs">
+                    <span class="brand-name">LAUGFS</span>
+                    <span class="brand-sub">Super</span>
+                  </div>
+                  <div class="card-back back-laugfs">
+                    <div class="ic-wrap">
+                      <div class="ic-stars">★★★☆☆</div>
+                      <div class="ic-name">LAUGFS</div>
+                      <div class="ic-outlets">30+ Outlets</div>
+                      <div class="ic-pct">3% (OT) / 1% (LMB)</div>
+                      <div class="ic-chf">1 Mio CHF</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /.retailers-grid -->
+          </div><!-- /.mt-content -->
+
+        </div><!-- /.section-box -->
+      </section>
+
+    </div><!-- /.snapshot-layout -->
+
+    <button id="dev-toggle" title="Adjust region positions">⚙</button>
+    <div id="dev-panel">
+      <div class="dev-title">⚙ Region Position Adjuster</div>
+    </div>
+
+  </div><!-- /.page -->
+
+  <script src="main.js"></script>
+</body>
+</html>
