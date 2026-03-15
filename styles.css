@@ -553,6 +553,12 @@ header a:hover {
   .ic-name { font-size: 0.78rem; }
   .ic-outlets, .ic-pct { font-size: 0.5rem; }
   .ic-chf { font-size: 0.7rem; }
+  .front-cargills img { width: 100px; height: auto; filter: drop-shadow(0 0 4px rgba(239,83,80,0.5));}
+  .front-keells img   { width: 80px; height: auto; filter: drop-shadow(0 0 3px rgba(255,255,255,0.3)); }
+  .front-sathosa img  { width: 130px; height: auto; filter: drop-shadow(0 0 4px rgba(255,238,88,0.5)); }
+  .front-arpico img   { width: 70px; height: auto; filter: drop-shadow(0 0 3px rgba(255,255,255,0.3)); }
+  .front-spar img     { width: 60px; height: auto; filter: drop-shadow(0 0 4px rgba(105,240,174,0.5)); }
+  .front-laugfs img   { width: 100px; height: auto; margin-top: 0.5rem; filter: drop-shadow(0 0 6px rgba(255,255,255,0.35)); }
 }
 
 @media (max-width: 400px) {
