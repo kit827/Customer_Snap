@@ -91,8 +91,8 @@ header {
 }
 
 .navbar img {
-  width: 32px;
-  height: 32px;
+  width: 60px;
+  height: auto;
   margin-right: 1px;
 }
 
@@ -372,6 +372,7 @@ header a:hover {
 .retailers-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 0.5rem;
   gap: 10px;
   width: 100%;
 }
@@ -382,6 +383,7 @@ header a:hover {
   height: 114px;
   cursor: pointer;
   border-radius: 14px;
+  margin-top: 0.7rem;
   /* Futuristic glowing border */
   box-shadow:
     0 0 0 1px rgba(139, 92, 246, 0.28),
@@ -462,33 +464,25 @@ header a:hover {
 
 /* ── BRAND FRONT GRADIENTS ───────────────────────────────── */
 .front-cargills { background: linear-gradient(145deg, #2a2a2a 0%, #111 100%); }
-.front-keells   { background: linear-gradient(145deg, #2e7d32 0%, #1a3d1c 100%); }
-.front-sathosa  { background: linear-gradient(145deg, #c62828 0%, #7f0000 100%); }
+.front-keells   { background: linear-gradient(145deg, #32c02e 0%, rgb(26, 81, 29) 100%); }
+.front-sathosa  { background: linear-gradient(145deg, #ed1b24 0%, #cc0c16 100%); }
 .front-arpico   { background: linear-gradient(145deg, #1a237e 0%, #0a0d40 100%); }
-.front-spar     { background: linear-gradient(145deg, #1b5e20 0%, #003300 100%); }
-.front-laugfs   { background: linear-gradient(145deg, #e64a19 0%, #8c2a00 100%); }
+.front-spar     { background: linear-gradient(145deg, #ffffff 0%, #b7b6b6 100%); }
+.front-laugfs   { background: linear-gradient(145deg, #fbb714 0%, #bd8605 100%); }
+
+.front-cargills img { width: 180px; height: auto; filter: drop-shadow(0 0 8px rgba(239,83,80,0.5));}
+.front-keells img   { width: 160px; height: auto; filter: drop-shadow(0 0 6px rgba(255,255,255,0.3)); }
+.front-sathosa img  { width: 230px; height: auto; filter: drop-shadow(0 0 8px rgba(255,238,88,0.5)); }
+.front-arpico img   { width: 130px; height: auto; filter: drop-shadow(0 0 6px rgba(255,255,255,0.3)); }
+.front-spar img     { width: 80px; height: auto; filter: drop-shadow(0 0 8px rgba(105,240,174,0.5)); }
+.front-laugfs img   { width: 200px; height: auto; margin-top: 0.5rem; filter: drop-shadow(0 0 6px rgba(255,255,255,0.35)); }
 
 .back-cargills  { background: linear-gradient(165deg, #333 20%, #0d0d0d 100%); }
-.back-keells    { background: linear-gradient(165deg, #388e3c 20%, #1a3d1c 100%); }
-.back-sathosa   { background: linear-gradient(165deg, #d32f2f 20%, #7f0000 100%); }
+.back-keells    { background: linear-gradient(145deg, #32c02e 0%, rgb(26, 81, 29) 100%); }
+.back-sathosa   { background: linear-gradient(165deg,  #ed1b24 0%, #cc0c16 100%); }
 .back-arpico    { background: linear-gradient(165deg, #283593 20%, #0a0d40 100%); }
-.back-spar      { background: linear-gradient(165deg, #2e7d32 20%, #003300 100%); }
-.back-laugfs    { background: linear-gradient(165deg, #f4511e 20%, #8c2a00 100%); }
-
-/* ── BRAND TEXT (FRONT) ──────────────────────────────────── */
-.brand-since { font-size: 0.42rem; font-weight: 600; letter-spacing: 2px; color: rgba(255,255,255,0.45); text-transform: uppercase; z-index: 1; }
-.brand-name  { font-family: var(--font-head); font-weight: 800; line-height: 1; text-align: center; z-index: 1; }
-.brand-sub   { font-size: 0.42rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; text-align: center; z-index: 1; }
-
-.front-cargills .brand-name { font-size: 1.45rem; color: #ef5350; font-style: italic; text-shadow: 0 0 20px rgba(239,83,80,0.5); }
-.front-keells   .brand-name { font-size: 1.5rem;  color: #fff; font-style: italic; text-shadow: 0 0 16px rgba(255,255,255,0.3); }
-.front-sathosa  .brand-name { font-size: 1.2rem;  color: #ffee58; text-shadow: 0 0 18px rgba(255,238,88,0.5); }
-.front-sathosa  .brand-sub  { color: rgba(255,255,255,0.5); }
-.front-arpico   .brand-name { font-size: 1.2rem;  color: #fff; letter-spacing: 2.5px; text-shadow: 0 0 16px rgba(255,255,255,0.3); }
-.front-arpico   .brand-sub  { color: #ffab40; letter-spacing: 1.5px; }
-.front-spar     .brand-name { font-size: 1.9rem;  color: #69f0ae; letter-spacing: 1px; text-shadow: 0 0 18px rgba(105,240,174,0.5); }
-.front-laugfs   .brand-name { font-size: 1.15rem; color: #fff; text-shadow: 0 0 16px rgba(255,255,255,0.35); }
-.front-laugfs   .brand-sub  { color: rgba(255,255,255,0.7); }
+.back-spar      { background: linear-gradient(145deg, #b7b7b7 0%, #828282 100%); }
+.back-laugfs    { background: linear-gradient(145deg, #fbb714 0%, #bd8605 100%); }
 
 /* ── BACK CARD INFO ──────────────────────────────────────── */
 .ic-wrap { position: relative; z-index: 1; width: 100%; }
