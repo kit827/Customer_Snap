@@ -6,14 +6,14 @@
 
 /* ─── REGION DATA ───────────────────────────────────────────────────*/
 const REGIONS = {
-  north:    { name: 'North',     color: '#7B73B5', gt: 11, lmb:  9, chf: 18 },
-  rajarata: { name: 'Rajarata',  color: '#E8853A', gt: 12, lmb: 10, chf: 20 },
-  wayamba:  { name: 'Wayamba',   color: '#C4D84E', gt: 16, lmb: 13, chf: 26 },
-  central:  { name: 'Central',   color: '#2B6BAD', gt: 11, lmb:  9, chf: 18 },
-  eastern:  { name: 'Eastern',   color: '#5BBDB8', gt: 13, lmb: 10, chf: 20 },
-  colomboN: { name: 'Colombo N', color: '#aaaaaa', gt: 12, lmb: 10, chf: 19 },
-  colomboS: { name: 'Colombo S', color: '#E06868', gt: 13, lmb: 10, chf: 20 },
-  south:    { name: 'South',     color: '#2E8B8B', gt: 12, lmb: 10, chf: 19 },
+  north:    { name: 'North',     color: '#7B73B5', gt: 11, lmb:  9, chf: 18, dis: 120 },
+  rajarata: { name: 'Rajarata',  color: '#E8853A', gt: 12, lmb: 10, chf: 20, dis: 150 },
+  wayamba:  { name: 'Wayamba',   color: '#C4D84E', gt: 16, lmb: 13, chf: 26, dis: 180 },
+  central:  { name: 'Central',   color: '#2B6BAD', gt: 11, lmb:  9, chf: 18, dis: 120 },
+  eastern:  { name: 'Eastern',   color: '#5BBDB8', gt: 13, lmb: 10, chf: 20, dis: 150 },
+  colomboN: { name: 'Colombo North', color: '#aaaaaa', gt: 12, lmb: 10, chf: 19, dis: 200 },
+  colomboS: { name: 'Colombo South', color: '#E06868', gt: 13, lmb: 10, chf: 20, dis: 160 },
+  south:    { name: 'South',     color: '#2E8B8B', gt: 12, lmb: 10, chf: 19, dis: 140 },
 };
 
 /* ─── TOOLTIP ANCHORS (SVG viewBox coords) ──────────────────────────
@@ -38,6 +38,7 @@ const tooltip  = document.getElementById('tooltip');
 const ttName   = document.getElementById('tt-name');
 const ttGT     = document.getElementById('tt-gt');
 const ttLMB    = document.getElementById('tt-lmb');
+const ttDIS    = document.getElementById('tt-dis');
 const ttCHF    = document.getElementById('tt-chf');
 const ttClose  = document.getElementById('tt-close');
 const svgEl    = document.getElementById('map-svg');
@@ -130,6 +131,7 @@ function populateTooltip(id) {
   ttName.textContent            = d.name;
   ttGT.textContent              = d.gt  + '%';
   ttLMB.textContent             = d.lmb + '%';
+  ttDIS.textContent             = d.dis + ' +';
   ttCHF.textContent             = d.chf + ' Mio CHF';
   tooltip.style.borderLeftColor = d.color;
 }
@@ -171,8 +173,9 @@ function positionTooltip(id) {
    Click → flip to back (shows data).  Click again → flip back to front.
    Opening a different card auto-closes the current one.
    ════════════════════════════════════════════════════════════════════ */
+
 function bindFlipCards() {
-  const cards = document.querySelectorAll('.retailer-card');
+  const cards = document.querySelectorAll('.retailer-card', '.retailer-card-Glomark');
 
   cards.forEach(card => {
 
@@ -196,7 +199,7 @@ function bindFlipCards() {
 
   /* Clicking anywhere outside the grid resets all cards */
   document.addEventListener('click', e => {
-    if (!e.target.closest('.retailers-grid')) {
+    if (!e.target.closest('.retailers-grid', '.retailer-card', '.retailer-card-Glomark')) {
       cards.forEach(c => c.classList.remove('flipped'));
     }
   });
@@ -285,3 +288,116 @@ function applyTransform(id) {
   const tr = REGION_TRANSFORMS[id];
   tr.img.setAttribute('transform', `translate(${tr.tx} ${tr.ty}) scale(${tr.scale})`);
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   LOCATION MARKER  —  draggable Factory & DC pin
+   ════════════════════════════════════════════════════════════════════ */
+(function initLocationMarker() {
+  const svg    = document.getElementById('map-svg');
+  const marker = document.getElementById('location-marker');
+  const hint   = marker && marker.querySelector('#pin-label text:last-child');
+  if (!svg || !marker) return;
+
+  /* Current position in SVG coordinate space */
+  let pinX = 175, pinY = 490;
+  let dragging = false;
+  let startSvgX, startSvgY, startPinX, startPinY;
+
+  /* ── Convert screen point → SVG coordinate ─────────────────────── */
+  function screenToSVG(clientX, clientY) {
+    const pt = svg.createSVGPoint();
+    pt.x = clientX;
+    pt.y = clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
+
+  /* ── Apply position ─────────────────────────────────────────────── */
+  function setPos(x, y) {
+    pinX = x; pinY = y;
+    marker.setAttribute('transform', `translate(${x.toFixed(1)}, ${y.toFixed(1)})`);
+    updateDevCoords();
+  }
+
+  /* ── Mouse events ───────────────────────────────────────────────── */
+  marker.addEventListener('mousedown', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragging = true;
+    marker.classList.add('dragging');
+    const svgPt = screenToSVG(e.clientX, e.clientY);
+    startSvgX = svgPt.x; startSvgY = svgPt.y;
+    startPinX = pinX;     startPinY = pinY;
+    // Fade out the "drag to adjust" hint on first drag
+    if (hint) hint.setAttribute('opacity', '0');
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const svgPt = screenToSVG(e.clientX, e.clientY);
+    setPos(startPinX + (svgPt.x - startSvgX),
+           startPinY + (svgPt.y - startSvgY));
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    marker.classList.remove('dragging');
+  });
+
+  /* ── Touch events (mobile) ──────────────────────────────────────── */
+  marker.addEventListener('touchstart', e => {
+    e.preventDefault();
+    const t = e.touches[0];
+    const svgPt = screenToSVG(t.clientX, t.clientY);
+    dragging = true;
+    startSvgX = svgPt.x; startSvgY = svgPt.y;
+    startPinX = pinX;     startPinY = pinY;
+    if (hint) hint.setAttribute('opacity', '0');
+  }, { passive: false });
+
+  document.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const t = e.touches[0];
+    const svgPt = screenToSVG(t.clientX, t.clientY);
+    setPos(startPinX + (svgPt.x - startSvgX),
+           startPinY + (svgPt.y - startSvgY));
+  }, { passive: true });
+
+  document.addEventListener('touchend', () => { dragging = false; });
+
+  /* ── Dev panel coord display ────────────────────────────────────── */
+  const panel = document.getElementById('dev-panel');
+
+  const pinRow = document.createElement('div');
+  pinRow.className = 'dev-region-row';
+  pinRow.style.borderTop = '1px solid rgba(139,92,246,0.2)';
+  pinRow.style.paddingTop = '8px';
+  pinRow.style.marginTop  = '4px';
+  pinRow.innerHTML = `
+    <div class="dev-region-name" style="color:#FFD600">📍 Factory &amp; DC Pin</div>
+    <div class="dev-inputs">
+      <label>X <input id="pin-x-input" type="number" step="0.5" value="${pinX}"></label>
+      <label>Y <input id="pin-y-input" type="number" step="0.5" value="${pinY}"></label>
+    </div>
+    <div style="font-size:0.58rem;color:rgba(200,195,255,0.5);margin-top:3px">
+      Drag pin on map  or  type values above
+    </div>`;
+  panel.appendChild(pinRow);
+
+  /* Type-in boxes also move the pin */
+  document.getElementById('pin-x-input').addEventListener('input', e => {
+    const v = parseFloat(e.target.value);
+    if (!isNaN(v)) setPos(v, pinY);
+  });
+  document.getElementById('pin-y-input').addEventListener('input', e => {
+    const v = parseFloat(e.target.value);
+    if (!isNaN(v)) setPos(pinX, v);
+  });
+
+  function updateDevCoords() {
+    const xi = document.getElementById('pin-x-input');
+    const yi = document.getElementById('pin-y-input');
+    if (xi) xi.value = pinX.toFixed(1);
+    if (yi) yi.value = pinY.toFixed(1);
+  }
+})();
