@@ -25,6 +25,36 @@
   <div class="page">
     <div class="snapshot-layout">
 
+      <!-- ══ COL 1 · VIDEOS ══ -->
+      <section class="snapshot-section video-section">
+        <div class="section-box video-section-box">
+          <h2 class="section-title">Videos</h2>
+          <div class="video-btn-list">
+
+            <button class="video-btn" onclick="playVideo('video1', 'Video 1 Title')">
+              <span class="vb-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="vb-text">
+                <span class="vb-label">Video 1</span>
+                <span class="vb-sub">Click to play</span>
+              </span>
+            </button>
+
+            <button class="video-btn" onclick="playVideo('video2', 'Video 2 Title')">
+              <span class="vb-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="vb-text">
+                <span class="vb-label">Video 2</span>
+                <span class="vb-sub">Click to play</span>
+              </span>
+            </button>
+
+          </div>
+        </div>
+      </section>
+
       <!-- ══ LEFT · GENERAL TRADE ══ -->
       <section class="snapshot-section gt-section">
         <div class="section-box">
@@ -164,7 +194,64 @@
 
                 </g><!-- /.region-labels -->
 
-              </svg>
+                <!-- ─── FACTORY & DC LOCATION MARKER ──────────────
+                     Starting position: x=175, y=490 (near Colombo)
+                     DRAG the pin to your exact location.
+                     The dev panel (⚙) also shows live X/Y coordinates.
+                     Pin tip (point) is anchored at translate(x, y).
+                ──────────────────────────────────────────────────── -->
+                <g id="location-marker"
+                   transform="translate(165, 455)"
+                   pointer-events="all">
+
+                  <!-- Pulsing glow ring behind the pin -->
+                  <circle class="pin-pulse" cx="1" cy="1" r="5"
+                          fill="none" stroke="rgba(13,11,35,0.93)" stroke-width="1.3" opacity="0.5"/>
+
+                  <!-- Soft shadow ellipse at pin tip -->
+                  <ellipse cx="1" cy="1" rx="5" ry="2.5"
+                           fill="rgba(0,0,0,0.4)"/>
+
+                  <!-- Font Awesome location-dot path (viewBox 0 0 640 640)
+                       scale(0.06) translate(-320,-570)  →  pin tip lands at (0,0)
+                       Pin body centre ≈ cy -16 in rendered space               -->
+                  <g transform="scale(0.06) translate(-305, -570)">
+                    <path d="M128 252.6C128 148.4 214 64 320 64C426 64 512 148.4 512 252.6
+                             C512 371.9 391.8 514.9 341.6 569.4C329.8 582.2 310.1 582.2
+                             298.3 569.4C248.1 514.9 127.9 371.9 127.9 252.6z
+                             M320 320C355.3 320 384 291.3 384 256C384 220.7 355.3 192
+                             320 192C284.7 192 256 220.7 256 256C256 291.3 284.7 320 320 320z"
+                          fill="rgba(13,11,35,0.93)"
+                          stroke="#FFD600"
+                          stroke-width="12"
+                          stroke-linejoin="round"
+                          paint-order="stroke fill"/>
+                  </g>
+
+                  <!-- Label callout (shown to the right of the pin) -->
+                  <g id="pin-label" pointer-events="none">
+                    <rect x="14" y="-58" width="90" height="20" rx="5"
+                          fill="rgba(13,11,35,0.93)" stroke="#FFD600" stroke-width="1"/>
+                    <!-- callout arrow tip -->
+                    <polygon points="10,-18  25,-38  34,-38"
+                             fill="rgba(13,11,35,0.93)" stroke="#FFD600"
+                             stroke-width="1" stroke-linejoin="round"/>
+                    <text x="60" y="-45" text-anchor="middle"
+                          font-family="Syne, sans-serif" font-weight="700"
+                          font-size="9.5" fill="#FFD600">Factory &amp; DC</text>
+                  </g>
+                </g><!-- /#location-marker -->
+
+                <!-- Drop-shadow filter for pin -->
+                <defs>
+                  <filter id="pinGlow" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+                    <feColorMatrix in="blur" type="matrix"
+                      values="1 0.8 0 0 0  0.9 0.7 0 0 0  0 0 0 0 0  0 0 0 0.7 0"
+                      result="glow"/>
+                    <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
             </div><!-- /#map-wrapper -->
 
             <!-- Floating tooltip -->
@@ -179,9 +266,12 @@
                 <span class="tt-key">LMB Share</span>
                 <span class="tt-val" id="tt-lmb">–</span>
               </div>
+              <div class="tt-row">
+                <span class="tt-key">Distributors</span>
+                <span class="tt-val" id="tt-dis">–</span>
+              </div>
               <div class="tt-divider"></div>
               <div class="tt-chf" id="tt-chf">–</div>
-              <div class="tt-chf-label">Mio CHF</div>
             </div>
           </div><!-- /.map-container -->
 
@@ -221,9 +311,9 @@
                   <div class="card-back back-cargills">
                     <div class="ic-wrap">
                       <div class="ic-stars">★★★★★</div>
-                      <div class="ic-name">Cargills</div>
-                      <div class="ic-outlets">500+ Outlets</div>
-                      <div class="ic-pct">50% (OT) / 8% (LMB)</div>
+                      <div class="ic-name">CARGILLS</div>
+                      <div class="ic-outlets">550+ Outlets</div>
+                      <div class="ic-pct">43% (MT) / 8% (LMB)</div>
                       <div class="ic-chf">15 Mio CHF</div>
                     </div>
                   </div>
@@ -239,9 +329,9 @@
                   <div class="card-back back-keells">
                     <div class="ic-wrap">
                       <div class="ic-stars">★★★★☆</div>
-                      <div class="ic-name">Keells</div>
-                      <div class="ic-outlets">123+ Outlets</div>
-                      <div class="ic-pct">28% (OT) / 4% (LMB)</div>
+                      <div class="ic-name">KEELLS</div>
+                      <div class="ic-outlets">140+ Outlets</div>
+                      <div class="ic-pct">35% (MT) / 4% (LMB)</div>
                       <div class="ic-chf">8 Mio CHF</div>
                     </div>
                   </div>
@@ -257,9 +347,9 @@
                   <div class="card-back back-sathosa">
                     <div class="ic-wrap">
                       <div class="ic-stars">★★★★☆</div>
-                      <div class="ic-name">Sathosa</div>
-                      <div class="ic-outlets">430+ Outlets</div>
-                      <div class="ic-pct">11% (OT) / 3% (LMB)</div>
+                      <div class="ic-name">SATHOSA</div>
+                      <div class="ic-outlets">340+ Outlets</div>
+                      <div class="ic-pct">7% (MT) / 3% (LMB)</div>
                       <div class="ic-chf">3 Mio CHF</div>
                     </div>
                   </div>
@@ -270,14 +360,14 @@
               <div class="retailer-card" data-retailer="arpico" tabindex="0" role="button" aria-label="Arpico">
                 <div class="card-inner">
                   <div class="card-front front-arpico">
-                    <img src="Arpico.png" alt="Arpico">
+                    <img src="arpico.png" alt="Arpico">
                   </div>
                   <div class="card-back back-arpico">
                     <div class="ic-wrap">
                       <div class="ic-stars">★★★☆☆</div>
-                      <div class="ic-name">Arpico</div>
-                      <div class="ic-outlets">60+ Outlets</div>
-                      <div class="ic-pct">6% (OT) / 2% (LMB)</div>
+                      <div class="ic-name">ARPICO</div>
+                      <div class="ic-outlets">50+ Outlets</div>
+                      <div class="ic-pct">6% (MT) / 2% (LMB)</div>
                       <div class="ic-chf">2 Mio CHF</div>
                     </div>
                   </div>
@@ -288,14 +378,14 @@
               <div class="retailer-card" data-retailer="spar" tabindex="0" role="button" aria-label="SPAR">
                 <div class="card-inner">
                   <div class="card-front front-spar">
-                    <img src="SPAR.png" alt="SPAR">
+                    <img src="spar.png" alt="SPAR">
                   </div>
                   <div class="card-back back-spar">
                     <div class="ic-wrap">
                       <div class="ic-stars">★★★☆☆</div>
                       <div class="ic-name">SPAR</div>
                       <div class="ic-outlets">10+ Outlets</div>
-                      <div class="ic-pct">3% (OT) / 1% (LMB)</div>
+                      <div class="ic-pct">4% (MT) / 1% (LMB)</div>
                       <div class="ic-chf">1 Mio CHF</div>
                     </div>
                   </div>
@@ -312,8 +402,26 @@
                     <div class="ic-wrap">
                       <div class="ic-stars">★★★☆☆</div>
                       <div class="ic-name">LAUGFS</div>
-                      <div class="ic-outlets">30+ Outlets</div>
-                      <div class="ic-pct">3% (OT) / 1% (LMB)</div>
+                      <div class="ic-outlets">40+ Outlets</div>
+                      <div class="ic-pct">3% (MT) / 1% (LMB)</div>
+                      <div class="ic-chf">1 Mio CHF</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GLOMARK -->
+              <div class="retailer-card" data-retailer="glomark" tabindex="0" role="button" aria-label="Glomark">
+                <div class="card-inner">
+                  <div class="card-front front-Glomark">
+                    <img src="glomark.png" alt="LAUGFS">
+                  </div>
+                  <div class="card-back back-Glomark">
+                    <div class="ic-wrap">
+                      <div class="ic-stars">★★★☆☆</div>
+                      <div class="ic-name">GLOMARK</div>
+                      <div class="ic-outlets">10+ Outlets</div>
+                      <div class="ic-pct">2% (MT) / 1% (LMB)</div>
                       <div class="ic-chf">1 Mio CHF</div>
                     </div>
                   </div>
@@ -321,6 +429,7 @@
               </div>
 
             </div><!-- /.retailers-grid -->
+
           </div><!-- /.mt-content -->
 
         </div><!-- /.section-box -->
@@ -335,6 +444,72 @@
 
   </div><!-- /.page -->
 
+  <!-- ══════════════════════════════════════════════════════
+       VIDEO OVERLAY  — fullscreen over whole page
+       ══════════════════════════════════════════════════════ -->
+  <div id="video-overlay" class="video-overlay" onclick="closeVideo(event)">
+    <div class="vo-container" onclick="event.stopPropagation()">
+      <div class="vo-header">
+        <span class="vo-title" id="vo-title">Video</span>
+        <button class="vo-close" onclick="closeVideo()">✕</button>
+      </div>
+      <div class="vo-body">
+
+        <!-- VIDEO 1 ─ put your video file name here after downloading from OneDrive -->
+        <video id="video1" class="vo-player" controls preload="none">
+          <source src="1.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+
+        <!-- VIDEO 2 ─ put your second video file name here -->
+        <video id="video2" class="vo-player" controls preload="none">
+          <source src="2.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+
+      </div>
+    </div>
+  </div>
+
   <script src="main.js"></script>
+  <script>
+    /* ── Video overlay controls ───────────────────────────────────
+       playVideo(id, title)  — shows the overlay and plays the video
+       closeVideo()          — hides overlay and pauses all videos
+    ──────────────────────────────────────────────────────────────*/
+    function playVideo(videoId, title) {
+      // Hide all players first
+      document.querySelectorAll('.vo-player').forEach(v => {
+        v.pause();
+        v.style.display = 'none';
+      });
+
+      // Show the chosen player
+      const player = document.getElementById(videoId);
+      if (player) {
+        player.style.display = 'block';
+        player.currentTime = 0;
+        player.play().catch(() => {}); // autoplay (user gesture satisfies policy)
+      }
+
+      // Update title and show overlay
+      document.getElementById('vo-title').textContent = title || 'Video';
+      document.getElementById('video-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideo(e) {
+      // If called from backdrop click, only close if the backdrop itself was clicked
+      if (e && e.target !== document.getElementById('video-overlay')) return;
+      document.querySelectorAll('.vo-player').forEach(v => v.pause());
+      document.getElementById('video-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Esc key closes overlay
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeVideo();
+    });
+  </script>
 </body>
 </html>
