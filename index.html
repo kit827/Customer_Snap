@@ -31,23 +31,43 @@
           <h2 class="section-title">Videos</h2>
           <div class="video-btn-list">
 
-            <button class="video-btn" onclick="playVideo('video1', 'Video 1 Title')">
+            <button class="video-btn" onclick="playVideo('video1', 'Feedback from Mr. Chathura Buddika', 'General Trade distribution')">
               <span class="vb-icon">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8 5v14l11-7z"/></svg>
               </span>
               <span class="vb-text">
-                <span class="vb-label">Video 1</span>
+                <span class="vb-label0">Feedback from</span>
+                <span class="vb-label1">Mr. Chathura</span>
                 <span class="vb-sub">Click to play</span>
               </span>
             </button>
 
-            <button class="video-btn" onclick="playVideo('video2', 'Video 2 Title')">
+            <button class="video-btn" onclick="playVideo('video2', 'Key Accounts Overview', 'General Trade distribution')">
               <span class="vb-icon">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8 5v14l11-7z"/></svg>
               </span>
               <span class="vb-text">
-                <span class="vb-label">Video 2</span>
+                <span class="vb-label4">Key Accounts</span>
+                <span class="vb-label3">Overview</span>
                 <span class="vb-sub">Click to play</span>
+              </span>
+            </button>
+
+            <!-- ── GALLERY BUTTONS ──────────────────────────────────────
+                 Add your image filenames to the arrays below.
+                 Files must be in the same folder as index.html.
+            ─────────────────────────────────────────────────────────── -->
+            <button class="gallery-btn"
+                    onclick="openGallery(['lg1.jpeg' ,'lg2.jpeg' ,'lg3.jpeg' ,'lg4.jpeg' ,'lg5.jpeg' ,'lg6.jpeg' ,'lg7.jpeg' ,'lg8.jpeg' ,'lg9.jpeg' ,'lg10.jpeg'], 'ISM and LG Photos')">
+              <span class="vb-icon gallery-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                  <path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z"/>
+                </svg>
+              </span>
+              <span class="vb-text">
+                <span class="vb-label2">ISM & LG</span>
+                <span class="vb-label3">Photos</span>
+                <span class="vb-sub">Click to view</span>
               </span>
             </button>
 
@@ -445,7 +465,7 @@
   </div><!-- /.page -->
 
   <!-- ══════════════════════════════════════════════════════
-       VIDEO OVERLAY  — fullscreen over whole page
+       VIDEO OVERLAY
        ══════════════════════════════════════════════════════ -->
   <div id="video-overlay" class="video-overlay" onclick="closeVideo(event)">
     <div class="vo-container" onclick="event.stopPropagation()">
@@ -455,60 +475,173 @@
       </div>
       <div class="vo-body">
 
-        <!-- VIDEO 1 ─ put your video file name here after downloading from OneDrive -->
-        <video id="video1" class="vo-player" controls preload="none">
-          <source src="1.mp4" type="video/mp4">
-          Your browser does not support HTML5 video.
-        </video>
+        <!-- Banner graphic: Asset_1.png image with text overlaid.
+             Hidden by default; shown with a delay via JS.         -->
+        <div class="vo-banner" id="vo-banner">
+          <img src="Asset_1.png" class="vo-banner-img" alt="">
+          <div class="vo-banner-texts">
+            <span class="vo-banner-main" id="vo-banner-main"></span>
+            <span class="vo-banner-sub"  id="vo-banner-sub"></span>
+          </div>
+        </div>
 
-        <!-- VIDEO 2 ─ put your second video file name here -->
+        <video id="video1" class="vo-player" controls preload="none">
+          <source src="feedback_video.mp4" type="video/mp4">
+        </video>
         <video id="video2" class="vo-player" controls preload="none">
-          <source src="2.mp4" type="video/mp4">
-          Your browser does not support HTML5 video.
+          <source src="ka.mp4" type="video/mp4">
         </video>
 
       </div>
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════
+       GALLERY OVERLAY
+       ══════════════════════════════════════════════════════ -->
+  <div id="gallery-overlay" class="gallery-overlay" onclick="closeGallery(event)">
+    <div class="go-container" onclick="event.stopPropagation()">
+      <div class="go-header">
+        <span class="go-title" id="go-title">Gallery</span>
+        <div class="go-header-right">
+          <div class="go-view-toggle">
+            <button id="go-btn-full"    class="go-view-btn active" onclick="setGalleryView('full')"    title="Fullscreen view">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M3 3h7v2H5v5H3V3zm11 0h7v7h-2V5h-5V3zM3 14h2v5h5v2H3v-7zm16 5h-5v2h7v-7h-2v5z"/></svg>
+            </button>
+            <button id="go-btn-collage" class="go-view-btn"        onclick="setGalleryView('collage')" title="Collage view">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/></svg>
+            </button>
+          </div>
+          <button class="go-close" onclick="closeGallery()">✕</button>
+        </div>
+      </div>
+      <div id="go-fullscreen" class="go-fullscreen">
+        <button id="go-prev" class="go-arrow go-arrow-left"  onclick="galleryNav(-1)">&#8249;</button>
+        <div class="go-img-wrap">
+          <img id="go-img" class="go-main-img" src="" alt="">
+        </div>
+        <button id="go-next" class="go-arrow go-arrow-right" onclick="galleryNav(1)">&#8250;</button>
+        <div class="go-counter" id="go-counter">1 / 1</div>
+      </div>
+      <div id="go-collage" class="go-collage" style="display:none"></div>
+    </div>
+  </div>
+
   <script src="main.js"></script>
   <script>
-    /* ── Video overlay controls ───────────────────────────────────
-       playVideo(id, title)  — shows the overlay and plays the video
-       closeVideo()          — hides overlay and pauses all videos
-    ──────────────────────────────────────────────────────────────*/
-    function playVideo(videoId, title) {
-      // Hide all players first
+    /* ═══════════════════════════════════════════════════════
+       VIDEO OVERLAY
+    ═══════════════════════════════════════════════════════ */
+    let _bannerTimer = null;
+
+    function playVideo(videoId, title, subtitle) {
       document.querySelectorAll('.vo-player').forEach(v => {
-        v.pause();
-        v.style.display = 'none';
+        v.pause(); v.style.display = 'none';
       });
 
-      // Show the chosen player
       const player = document.getElementById(videoId);
       if (player) {
         player.style.display = 'block';
         player.currentTime = 0;
-        player.play().catch(() => {}); // autoplay (user gesture satisfies policy)
+        player.play().catch(() => {});
+      }
+      document.getElementById('vo-title').textContent = title || 'Video';
+      document.getElementById('vo-banner-main').textContent = title    || '';
+      document.getElementById('vo-banner-sub').textContent  = subtitle || '';
+
+      /* Hide banner immediately, show it after 2 second delay */
+      const banner = document.getElementById('vo-banner');
+      banner.classList.remove('visible');
+      clearTimeout(_bannerTimer);
+      if (videoId !== 'video2') {
+        _bannerTimer = setTimeout(() => banner.classList.add('visible'), 4000);
       }
 
-      // Update title and show overlay
-      document.getElementById('vo-title').textContent = title || 'Video';
       document.getElementById('video-overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
     function closeVideo(e) {
-      // If called from backdrop click, only close if the backdrop itself was clicked
       if (e && e.target !== document.getElementById('video-overlay')) return;
+      clearTimeout(_bannerTimer);
+      document.getElementById('vo-banner').classList.remove('visible');
       document.querySelectorAll('.vo-player').forEach(v => v.pause());
       document.getElementById('video-overlay').classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    // Esc key closes overlay
+    /* ═══════════════════════════════════════════════════════
+       IMAGE GALLERY OVERLAY
+    ═══════════════════════════════════════════════════════ */
+    let _gallery = [], _gIdx = 0, _gView = 'full';
+
+    function openGallery(images, title) {
+      _gallery = images; _gIdx = 0; _gView = 'full';
+      document.getElementById('go-title').textContent = title || 'Gallery';
+      _renderCollage();
+      _showFullscreen(0, null);
+      _syncViewBtns();
+      setGalleryView('full');
+      document.getElementById('gallery-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery(e) {
+      if (e && e.target !== document.getElementById('gallery-overlay')) return;
+      document.getElementById('gallery-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function setGalleryView(view) {
+      _gView = view;
+      document.getElementById('go-fullscreen').style.display = view === 'full'    ? 'flex'  : 'none';
+      document.getElementById('go-collage').style.display    = view === 'collage' ? 'grid'  : 'none';
+      _syncViewBtns();
+    }
+
+    function _syncViewBtns() {
+      document.getElementById('go-btn-full').classList.toggle('active',    _gView === 'full');
+      document.getElementById('go-btn-collage').classList.toggle('active', _gView === 'collage');
+    }
+
+    function _showFullscreen(idx, dir) {
+      _gIdx = Math.max(0, Math.min(idx, _gallery.length - 1));
+      const img = document.getElementById('go-img');
+      img.classList.remove('slide-left', 'slide-right');
+      if (dir) { void img.offsetWidth; img.classList.add('slide-' + dir); }
+      img.src = _gallery[_gIdx];
+      img.alt = 'Image ' + (_gIdx + 1);
+      document.getElementById('go-counter').textContent = (_gIdx + 1) + ' / ' + _gallery.length;
+      document.querySelectorAll('.go-thumb').forEach((t, i) => t.classList.toggle('active', i === _gIdx));
+      document.getElementById('go-prev').style.opacity = _gIdx === 0                    ? '0.25' : '1';
+      document.getElementById('go-next').style.opacity = _gIdx === _gallery.length - 1 ? '0.25' : '1';
+    }
+
+    function galleryNav(dir) {
+      const next = _gIdx + dir;
+      if (next < 0 || next >= _gallery.length) return;
+      _showFullscreen(next, dir === 1 ? 'left' : 'right');
+    }
+
+    function _renderCollage() {
+      const grid = document.getElementById('go-collage');
+      grid.innerHTML = '';
+      _gallery.forEach((src, i) => {
+        const img = document.createElement('img');
+        img.src = src; img.alt = 'Image ' + (i + 1);
+        img.className = 'go-thumb' + (i === _gIdx ? ' active' : '');
+        img.onclick = () => { _gIdx = i; setGalleryView('full'); _showFullscreen(i, null); };
+        grid.appendChild(img);
+      });
+    }
+
+    /* Keyboard */
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeVideo();
+      const galOpen = document.getElementById('gallery-overlay').classList.contains('open');
+      const vidOpen = document.getElementById('video-overlay').classList.contains('open');
+      if (e.key === 'Escape') { galOpen ? closeGallery() : closeVideo(); return; }
+      if (galOpen && e.key === 'ArrowRight') galleryNav(1);
+      if (galOpen && e.key === 'ArrowLeft')  galleryNav(-1);
     });
   </script>
 </body>
