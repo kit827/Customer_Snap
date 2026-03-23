@@ -6,14 +6,14 @@
 
 /* ─── REGION DATA ───────────────────────────────────────────────────*/
 const REGIONS = {
-  north:    { name: 'North',     color: '#7B73B5', gt: 11, lmb:  9, chf: 18, dis: 120 },
-  rajarata: { name: 'Rajarata',  color: '#E8853A', gt: 12, lmb: 10, chf: 20, dis: 150 },
-  wayamba:  { name: 'Wayamba',   color: '#C4D84E', gt: 16, lmb: 13, chf: 26, dis: 180 },
-  central:  { name: 'Central',   color: '#2B6BAD', gt: 11, lmb:  9, chf: 18, dis: 120 },
-  eastern:  { name: 'Eastern',   color: '#5BBDB8', gt: 13, lmb: 10, chf: 20, dis: 150 },
-  colomboN: { name: 'Colombo North', color: '#aaaaaa', gt: 12, lmb: 10, chf: 19, dis: 200 },
-  colomboS: { name: 'Colombo South', color: '#E06868', gt: 13, lmb: 10, chf: 20, dis: 160 },
-  south:    { name: 'South',     color: '#2E8B8B', gt: 12, lmb: 10, chf: 19, dis: 140 },
+  north:    { name: 'North',     color: '#7B73B5', gt: 11, lmb:  9, chf: 18, dis: 5 },
+  rajarata: { name: 'Rajarata',  color: '#E8853A', gt: 12, lmb: 10, chf: 20, dis: 10 },
+  wayamba:  { name: 'Wayamba',   color: '#C4D84E', gt: 16, lmb: 13, chf: 26, dis: 20 },
+  central:  { name: 'Central',   color: '#2B6BAD', gt: 11, lmb:  9, chf: 18, dis: 16 },
+  eastern:  { name: 'Eastern',   color: '#5BBDB8', gt: 13, lmb: 10, chf: 20, dis: 13 },
+  colomboN: { name: 'Colombo North', color: '#aaaaaa', gt: 12, lmb: 10, chf: 19, dis: 10 },
+  colomboS: { name: 'Colombo South', color: '#E06868', gt: 13, lmb: 10, chf: 20, dis: 15 },
+  south:    { name: 'South',     color: '#2E8B8B', gt: 12, lmb: 10, chf: 19, dis: 20 },
 };
 
 /* ─── TOOLTIP ANCHORS (SVG viewBox coords) ──────────────────────────
