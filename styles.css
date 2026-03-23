@@ -961,7 +961,6 @@ header a:hover {
   .page { height: auto; overflow: visible; padding: 10px 12px 36px; }
   header a { font-size: 0.6rem; padding: 4px 10px; }
   .navbar { padding: 0 24px; }
-  .header_left { max-width: 10rem; }
   .navbar .logo a { font-size: 0.7rem; margin-right: -5rem; }
   .snapshot-layout { grid-template-columns: 1fr; grid-template-rows: auto; }
   .video-section   { grid-column: 1; }
@@ -1003,6 +1002,8 @@ header a:hover {
   .video-btn-list > *:last-child:nth-child(odd) {grid-column: 1 / -1; width: calc(50% - 6px); justify-self: center;}
   .vo-banner { bottom: 8px; left: 90%; width: 50%; max-width: none; transform: translateX(-50%) translateY(14px); }
   .vo-banner-img { width: 60%; height: auto; margin-bottom: -1rem;}
+  .all-links {opacity: 0;}
+  .header_left {margin-right: -2rem;}
 }
 
 @media (max-width: 400px) {
