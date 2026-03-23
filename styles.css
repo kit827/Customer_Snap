@@ -966,6 +966,10 @@ header a:hover {
   .snapshot-layout { grid-template-columns: 1fr; grid-template-rows: auto; }
   .video-section   { grid-column: 1; }
   .video-btn-list  { flex-direction: column; }
+  .stat-strip { width: 90%; }
+  .stat-pill-label { font-size: 0.5rem; }
+  .stat-pill-value { font-size: 0.6rem; }
+  .stat-pill-sub { font-size: 0.48rem; }
   .map-container { max-width: 500px; margin: 0 auto; margin-bottom: -3rem; }
   .stat-strip { flex-wrap: wrap; margin-bottom: 0.5rem; }
   .retailers-grid { gap: 8px; margin-bottom: 1rem; }
@@ -981,10 +985,24 @@ header a:hover {
   .front-laugfs img   { width: 100px; height: auto; margin-top: 0.5rem; filter: drop-shadow(0 0 6px rgba(255,255,255,0.35)); }
   .front-Glomark img  { width: 90px;  height: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.8)); }
   .vo-container { width: 98vw; }
+  .video-btn { padding: 12px; }
   .video-btn-list {display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .vb-icon { width: 22px; height: 22px; }
-  .vb-label { font-size: 0.7rem; }
+  .vb-label0 { font-family: var(--font-head); font-weight: 600; font-size: 0.42rem; color: #fff; line-height: 1.2; }
+  .vb-label1 { font-family: var(--font-head); font-weight: 700; font-size: 0.49rem; color: #fff; line-height: 1.2; margin-top: -0.1rem; }
+  .vb-label { font-family: var(--font-head); font-weight: 700; font-size: 0.6rem; color: #fff; line-height: 1.2; }
+  .vb-label3 { font-family: var(--font-head); font-weight: 600; font-size: 0.43rem; color: #fff; line-height: 1.2; margin-top: -0.2rem; }
+  .vb-label2 { font-family: var(--font-head); font-weight: 700; font-size: 0.6rem; color: #fff; line-height: 1.2; }
+  .vb-label4 { font-family: var(--font-head); font-weight: 600; font-size: 0.48rem; color: #fff; line-height: 1.2;}
   .vb-sub { font-size: 0.5rem; }
+  .gallery-btn { padding: 10px; }
+  .gallery-icon { width: 22px; height: 22px;}
+  .gallery-icon svg { width: 14px; height: 14px; }
+  .vo-title { font-size: 0.7rem;;}
+  .vo-close { width: 28px; height: 28px; font-size: 0.68rem; }
+  .video-btn-list > *:last-child:nth-child(odd) {grid-column: 1 / -1; width: calc(50% - 6px); justify-self: center;}
+  .vo-banner { bottom: 8px; left: 90%; width: 50%; max-width: none; transform: translateX(-50%) translateY(14px); }
+  .vo-banner-img { width: 60%; height: auto; margin-bottom: -1rem;}
 }
 
 @media (max-width: 400px) {
