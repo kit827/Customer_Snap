@@ -580,8 +580,11 @@
       document.getElementById('go-title').textContent = title || 'Gallery';
       _renderCollage();
       _showFullscreen(0, null);
+      /* Default view: collage on mobile (≤680px), fullscreen on desktop */
+      const defaultView = window.innerWidth <= 680 ? 'collage' : 'full';
+      _gView = defaultView;
       _syncViewBtns();
-      setGalleryView('full');
+      setGalleryView(defaultView);
       document.getElementById('gallery-overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
