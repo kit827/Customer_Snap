@@ -29,11 +29,13 @@
 }
 
 /* ── BASE ───────────────────────────────────────────────────*/
+
 html, body {
   height: 100%;
   font-family: var(--font-body);
   color: var(--text);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -135,9 +137,39 @@ header a:hover {
 /* ══════════════════════════════════════════════════════════
    PAGE  —  viewport fill, no outer scroll
    ══════════════════════════════════════════════════════════*/
-.page {
+/* ── GWC section — image in a box, full viewport height ──── */
+.gwc-section {
   height: calc(100vh - 56px);
   margin-top: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 22px;
+}
+
+.gwc-img-box {
+  width: 100%;
+  max-width: 1320px;
+  height: 100%;
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gwc-full-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 20px;
+}
+
+/* ── Snapshot section — also full viewport height ─────────── */
+.page {
+  height: calc(100vh - 56px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -958,7 +990,7 @@ header a:hover {
 
 @media (max-width: 680px) {
   html, body { overflow: auto; }
-  .page { height: auto; overflow: visible; padding: 10px 12px 36px; }
+  .page, .gwc-section { height: auto; overflow: visible; padding: 10px 12px 36px; scroll-snap-align: none; }
   header a { font-size: 0.6rem; padding: 4px 10px; }
   .navbar { padding: 0 24px; }
   .navbar .logo a { font-size: 0.7rem; margin-right: -5rem; }
@@ -1004,10 +1036,259 @@ header a:hover {
   .vo-banner-img { width: 60%; height: auto; margin-bottom: -1rem;}
   .all-links {opacity: 0;}
   .header_left {margin-right: -2rem;}
+  .gwc-section {margin-bottom: -2rem;}
 }
 
 @media (max-width: 400px) {
   .retailer-card { height: 96px; }
   .front-cargills .brand-name, .front-keells .brand-name { font-size: 1.2rem; }
   .front-spar .brand-name { font-size: 1.5rem; }
+}
+/* ══════════════════════════════════════════════════════════
+   GROW WITH CUSTOMER  —  full-page slide
+   ══════════════════════════════════════════════════════════*/
+
+/* Hidden by default; shown when .active is added */
+.gwc-page {
+  display: none;
+  height: calc(100vh - 56px);
+  margin-top: 56px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 28px 32px;
+}
+.gwc-page.active { display: block; }
+
+.gwc-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ── Title ──────────────────────────────────────────────── */
+.gwc-title-row {
+  margin-bottom: 6px;
+}
+.gwc-title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+.gwc-title-line {
+  height: 3px;
+  width: 320px;
+  max-width: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4, #84cc16);
+  border-radius: 2px;
+  margin-bottom: 18px;
+}
+
+/* ── Two-column layout ──────────────────────────────────── */
+.gwc-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.gwc-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Subtitles ──────────────────────────────────────────── */
+.gwc-subtitle {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.4vw, 1.15rem);
+  color: #e8e6f8;
+  line-height: 1.45;
+}
+.gwc-hl    { color: #FFD600; }
+.gwc-green { color: #84cc16; }
+
+/* ── Bar charts ─────────────────────────────────────────── */
+.gwc-chart-wrap {
+  background: rgba(13, 11, 35, 0.65);
+  border: 1px solid rgba(139,92,246,0.18);
+  border-radius: 14px;
+  padding: 14px 18px 10px;
+}
+
+.gwc-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  height: 110px;
+  margin-bottom: 6px;
+}
+
+.gwc-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+.gwc-bar-val {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: rgba(232,230,248,0.85);
+}
+.gwc-bar-val--sm { font-size: 0.6rem; }
+
+.gwc-bar {
+  width: 100%;
+  max-width: 40px;
+  border-radius: 4px 4px 0 0;
+  min-height: 6px;
+  transition: height 0.6s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+.gwc-bar--grey   { background: rgba(200,195,240,0.45); }
+.gwc-bar--green  { background: #84cc16; box-shadow: 0 0 10px rgba(132,204,22,0.4); }
+.gwc-bar--lgreen { background: #a3e635; box-shadow: 0 0 8px rgba(163,230,53,0.4); }
+.gwc-bar--dgreen { background: #16a34a; box-shadow: 0 0 8px rgba(22,163,74,0.4); }
+.gwc-bar--lblue  { background: #93c5fd; }
+.gwc-bar--dblue  { background: #3b82f6; }
+
+.gwc-bar-label {
+  font-size: 0.68rem;
+  color: rgba(200,195,240,0.65);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.gwc-chart-caption {
+  font-size: 0.7rem;
+  color: rgba(200,195,240,0.55);
+  text-align: center;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* Grouped bars (COF / CSL chart) */
+.gwc-bars--grouped { gap: 22px; }
+.gwc-grouped-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  width: 100%;
+  justify-content: center;
+}
+.gwc-grouped-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+
+/* Chart legend */
+.gwc-legend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  color: rgba(200,195,240,0.75);
+  margin-top: 8px;
+  font-weight: 500;
+}
+.gwc-legend-dot {
+  width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+}
+.gwc-legend-dot--green { background: #16a34a; }
+.gwc-legend-dot--blue  { background: #3b82f6; }
+
+/* ── KPI strip ──────────────────────────────────────────── */
+.gwc-kpi-strip {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+.gwc-kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.gwc-kpi-val {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
+  color: #84cc16;
+  text-shadow: 0 0 16px rgba(132,204,22,0.45);
+  line-height: 1;
+}
+.gwc-kpi-label {
+  font-size: 0.62rem;
+  color: rgba(200,195,240,0.65);
+  font-weight: 500;
+  line-height: 1.3;
+  max-width: 100px;
+}
+
+/* ── Reset availability headline ────────────────────────── */
+.gwc-reset-headline {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(0.82rem, 1.2vw, 1rem);
+  color: #e8e6f8;
+  text-align: center;
+  line-height: 1.45;
+  padding: 10px 0 2px;
+}
+.gwc-reset-headline strong { color: #fff; }
+
+/* ── Initiative cards ───────────────────────────────────── */
+.gwc-initiatives {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.gwc-initiative {
+  background: rgba(13, 11, 35, 0.65);
+  border: 1px solid rgba(139,92,246,0.18);
+  border-radius: 13px;
+  padding: 14px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.gwc-initiative:hover {
+  border-color: rgba(139,92,246,0.45);
+  transform: translateY(-2px);
+}
+.gwc-init-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 2px;
+}
+.gwc-init-icon--green { background: radial-gradient(circle, #22c55e, #16a34a); color: #fff; box-shadow: 0 0 18px rgba(34,197,94,0.4); }
+.gwc-init-icon--dark  { background: radial-gradient(circle, #374151, #111827); color: #fff; box-shadow: 0 0 14px rgba(0,0,0,0.5); }
+.gwc-init-icon--gold  { background: radial-gradient(circle, #f59e0b, #d97706); color: #fff; box-shadow: 0 0 18px rgba(245,158,11,0.4); }
+
+.gwc-init-name { font-family: var(--font-head); font-weight: 700; font-size: 0.82rem; color: #fff; line-height: 1.2; }
+.gwc-init-accent { color: #22c55e; }
+.gwc-init-plain  { color: #fff; }
+.gwc-init-desc { font-size: 0.62rem; color: rgba(200,195,240,0.7); line-height: 1.35; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 820px) {
+  .gwc-cols { grid-template-columns: 1fr; gap: 20px; }
+  .gwc-initiatives { grid-template-columns: repeat(3,1fr); gap: 8px; }
+}
+@media (max-width: 520px) {
+  .gwc-page { padding: 14px 14px 24px; }
+  .gwc-kpi-strip { flex-wrap: wrap; gap: 8px; }
+  .gwc-initiatives { grid-template-columns: 1fr 1fr; }
+  .gwc-initiatives .gwc-initiative:last-child:nth-child(odd) {
+    grid-column: 1 / -1; width: calc(50% - 6px); justify-self: center;
+  }
 }
